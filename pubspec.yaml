@@ -34,6 +34,13 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  http: ^1.2.0
+  shared_preferences: ^2.2.2
+  shared_preferences_aurora:
+    git:
+      url: https://gitlab.com/omprussia/flutter/flutter-plugins.git
+      ref: shared_preferences_aurora-0.5.1
+      path: packages/shared_preferences/shared_preferences_aurora
 
 dev_dependencies:
   flutter_test:
@@ -58,7 +65,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
+  assets:
+    - lib/Assets/Images/
+    - lib/Assets/Images/Icons/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
