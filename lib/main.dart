@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hike_plan/Pages/CreatePlan.dart';
 import 'package:hike_plan/Pages/HikePlans.dart';
 import 'package:hike_plan/Pages/Index.dart';
 
@@ -50,6 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
           return PageRouteBuilder(pageBuilder: (_, __, ___) => Index());
         else if (settings.name == '/HikePlans')
           return PageRouteBuilder(pageBuilder: (_, __, ___) => HikePlans());
+        else if (settings.name == '/CreatePlan')
+          return PageRouteBuilder(pageBuilder: (_, __, ___) => CreatePlan());
 
         return null;
       },

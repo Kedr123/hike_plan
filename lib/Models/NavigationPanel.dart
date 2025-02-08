@@ -15,7 +15,17 @@ class _NavigationPanelState extends State<NavigationPanel> {
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (context) => SizedBox(
-      child: ClipRRect(
+      child:Container(
+        decoration: BoxDecoration(
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: Colors.black54,
+                blurRadius: 30.0,
+                offset: Offset(0.0, 0.0)
+            )
+          ],
+        ),
+        child: ClipRRect(
         borderRadius: const BorderRadius.only(
           topRight: Radius.circular(5),
           topLeft: Radius.circular(5),
@@ -24,7 +34,7 @@ class _NavigationPanelState extends State<NavigationPanel> {
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: false,
           showUnselectedLabels: false,
-          elevation: 1,
+          elevation: 0.0,
 
           backgroundColor: Color(0xFF636363),
           currentIndex: this.widget.active_item,
@@ -35,6 +45,10 @@ class _NavigationPanelState extends State<NavigationPanel> {
             ;
             if (item == 1) {
               Navigator.pushNamed(context, '/HikePlans');
+            }
+            ;
+            if (item == 2) {
+              Navigator.pushNamed(context, '/CreatePlan');
             }
             ;
 
@@ -77,6 +91,6 @@ class _NavigationPanelState extends State<NavigationPanel> {
           ],
         ),
       ),
-    ));
+    )));
   }
 }
