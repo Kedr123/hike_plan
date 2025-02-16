@@ -39,21 +39,21 @@ class _CreatePlanState extends State<CreatePlan> {
     return Scaffold(
       extendBody: true,
       backgroundColor: Color(0xFF4F4F4F),
-      bottomNavigationBar: NavPanelCreatePlan(active_item: 1),
+      bottomNavigationBar: NavPanelCreatePlan(active_item: 2),
       body: FlutterMap(
           mapController: MapController(),
           options: MapOptions(
-              initialCenter: const LatLng(55.755793, 37.617134),
-              initialZoom: 5,
-              onTap: (tapPosition, point) => {
-                setState(() {
-                  mapPoints.add(point);
-                  markers = _getMarkers(mapPoints);
-                }),
+            initialCenter: const LatLng(55.755793, 37.617134),
+            initialZoom: 5,
+            onTap: (tapPosition, point) => {
+              setState(() {
+                mapPoints.add(point);
+                markers = _getMarkers(mapPoints);
+              }),
 
-                print(point.toString())
+              print(point.toString())
             },
-            
+
 
           ),
           children: [

@@ -3,6 +3,7 @@ import 'package:hike_plan/LocalDataBase/Database.dart';
 import 'package:hike_plan/Pages/CreatePlan.dart';
 import 'package:hike_plan/Pages/HikePlans.dart';
 import 'package:hike_plan/Pages/Index.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -47,9 +48,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    // Provider.of<DBProvider>(context, listen: true).initDB();
+    return ChangeNotifierProvider<DBProvider>(create: (context)=>DBProvider(), child: MaterialApp(
       onGenerateRoute: (settings) {
         if (settings.name == '/Index')
           return PageRouteBuilder(pageBuilder: (_, __, ___) => Index());
@@ -67,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // '/HikePlan': (context) => HikePlans(),
 
       },
-    );
+    ));
     // return Scaffold(
     //   // appBar: AppBar(
     //   //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,

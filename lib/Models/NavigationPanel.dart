@@ -66,20 +66,21 @@ class _NavigationPanelState extends State<NavigationPanel> {
                 )),
             BottomNavigationBarItem(icon: SizedBox(
               height: 25,
-              child: Image(image: AssetImage('lib/Assets/Images/Icons/map_icon.png')),
-            ), label: "",
-                activeIcon: SizedBox(
-                  height: 30,
-                  child: Image(image: AssetImage('lib/Assets/Images/Icons/map_active_icon.png')),
-                )),
-            BottomNavigationBarItem(icon: SizedBox(
-              height: 25,
               child: Image(image: AssetImage('lib/Assets/Images/Icons/track_icon.png')),
             ), label: "",
                 activeIcon: SizedBox(
                   height: 30,
                   child: Image(image: AssetImage('lib/Assets/Images/Icons/track_active_icon.png')),
                 )),
+            BottomNavigationBarItem(icon: SizedBox(
+              height: 25,
+              child: Image(image: AssetImage('lib/Assets/Images/Icons/map_icon.png')),
+            ), label: "",
+                activeIcon: SizedBox(
+                  height: 30,
+                  child: Image(image: AssetImage('lib/Assets/Images/Icons/map_active_icon.png')),
+                )),
+
             BottomNavigationBarItem(icon: SizedBox(
               height: 25,
               child: Image(image: AssetImage('lib/Assets/Images/Icons/accaunt_icon.png')),
