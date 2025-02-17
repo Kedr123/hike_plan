@@ -2,16 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class NavPanelCreatePlan extends StatefulWidget {
-  const NavPanelCreatePlan({super.key, required this.active_item});
+class NavPanelEditPlan extends StatefulWidget {
+  const NavPanelEditPlan({super.key, required this.active_item, required this.isVisible});
 
   final int active_item;
+  final bool isVisible;
 
   @override
-  State<NavPanelCreatePlan> createState() => _NavPanelCreatePlanState();
+  State<NavPanelEditPlan> createState() => _NavPanelEditPlanState();
 }
 
-class _NavPanelCreatePlanState extends State<NavPanelCreatePlan> {
+class _NavPanelEditPlanState extends State<NavPanelEditPlan> {
   @override
   Widget build(BuildContext context) {
     return Builder(
@@ -42,16 +43,24 @@ class _NavPanelCreatePlanState extends State<NavPanelCreatePlan> {
                   backgroundColor: Color(0xCB636363),
                   currentIndex: this.widget.active_item,
                   onTap: (item) {
-                    if (item == 0) {
-                      Navigator.pushNamed(context, '/Index');
+                    if(widget.isVisible){
+                      if (item == 0) {
+                        Navigator.pushNamed(context, '/Index');
+                      }
+                      ;
+                      if (item == 1) {
+                        Navigator.pushNamed(context, '/HikePlans');
+                      }
+                      ;
                     }
-                    ;
-                    if (item == 1) {
-                      Navigator.pushNamed(context, '/HikePlans');
-                    }
-                    ;
+
                   },
-                  items: <BottomNavigationBarItem>[
+                  items:!widget.isVisible?<BottomNavigationBarItem>[
+                    BottomNavigationBarItem(icon: Container(), label: ""),
+                    BottomNavigationBarItem(icon: Container(), label: ""),
+                    BottomNavigationBarItem(icon: Container(), label: ""),
+                    BottomNavigationBarItem(icon: Container(), label: ""),
+                  ]: <BottomNavigationBarItem>[
                     BottomNavigationBarItem(
                         icon: SizedBox(
                           height: 25,

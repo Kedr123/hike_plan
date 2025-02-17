@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hike_plan/LocalDataBase/Database.dart';
-import 'package:hike_plan/Pages/CreatePlan.dart';
+import 'package:hike_plan/Pages/EditPlan.dart';
 import 'package:hike_plan/Pages/HikePlans.dart';
 import 'package:hike_plan/Pages/Index.dart';
 import 'package:provider/provider.dart';
@@ -59,8 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
           return PageRouteBuilder(pageBuilder: (_, __, ___) => Index());
         else if (settings.name == '/HikePlans')
           return PageRouteBuilder(pageBuilder: (_, __, ___) => HikePlans());
-        else if (settings.name == '/CreatePlan')
-          return PageRouteBuilder(pageBuilder: (_, __, ___) => CreatePlan());
+        else if (settings.name == '/EditPlan')
+          return PageRouteBuilder(pageBuilder: (_, __, ___) => EditPlan());
 
         return null;
       },

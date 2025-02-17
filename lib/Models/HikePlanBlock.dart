@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hike_plan/LocalDataBase/Models/RoutesModel.dart';
 import 'package:hike_plan/Models/MapPreview.dart';
+import 'package:hike_plan/Pages/EditPlan.dart';
 
 class HikePlanBlock extends StatefulWidget {
   const HikePlanBlock({super.key, required this.routesModel});
@@ -23,6 +24,10 @@ class _HikePlanBlockState extends State<HikePlanBlock> {
   int time_animation = 300;
 
   final ScrollController _scrollController = ScrollController();
+
+  void pushEditPlan(){
+    Navigator.push(context, PageRouteBuilder(pageBuilder: (_, __, ___) => EditPlan(route_id: widget.routesModel.id)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +61,7 @@ class _HikePlanBlockState extends State<HikePlanBlock> {
                         if (status == 1)
                           {setStatus()}
                         else
-                          {Navigator.pushNamed(context, '/CreatePlan')}
+                          {pushEditPlan()}
                       },
                       child: Stack(
                         // width: double.maxFinite,
@@ -185,7 +190,7 @@ class _HikePlanBlockState extends State<HikePlanBlock> {
                                                 Radius.circular(5)))),
                                   ),
                                   ElevatedButton(
-                                    onPressed: () => {Navigator.pushNamed(context, '/CreatePlan')},
+                                    onPressed: () => {pushEditPlan()},
                                     child: Text("Карта",
                                         style: TextStyle(
                                             color: Color(0xFF00A6FF))),

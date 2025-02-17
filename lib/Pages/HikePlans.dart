@@ -7,6 +7,7 @@ import 'package:hike_plan/LocalDataBase/Database.dart';
 import 'package:hike_plan/LocalDataBase/Models/RoutesModel.dart';
 import 'package:hike_plan/Models/HikePlanBlock.dart';
 import 'package:hike_plan/Models/NavigationPanel.dart';
+import 'package:hike_plan/Pages/EditPlan.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
@@ -47,7 +48,7 @@ class _HikePlansState extends State<HikePlans> {
         floatingActionButton: Padding(
           padding: const EdgeInsets.only(bottom: 25.0),
           child: FloatingActionButton(
-            onPressed: () => {},
+            onPressed: () => {Navigator.push(context, PageRouteBuilder(pageBuilder: (_, __, ___) => EditPlan(route_id: null,)))},
             backgroundColor: Color(0xFF636363),
             hoverColor: Colors.white,
             foregroundColor: Colors.white,

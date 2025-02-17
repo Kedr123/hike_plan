@@ -48,7 +48,7 @@ class _NavigationPanelState extends State<NavigationPanel> {
             }
             ;
             if (item == 2) {
-              Navigator.pushNamed(context, '/CreatePlan');
+              Navigator.pushNamed(context, '/EditPlan');
             }
             ;
 
