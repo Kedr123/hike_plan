@@ -23,20 +23,43 @@ class _IndexState extends State<Index> {
         bottomNavigationBar: NavigationPanel(active_item: 0),
         floatingActionButton: Padding(
           padding: const EdgeInsets.only(bottom: 25.0),
-          child: FloatingActionButton(
-            onPressed: () => {
-              // value.initDB(),
-              value.comand()
-            },
-            backgroundColor: Color(0xFF636363),
-            hoverColor: Colors.white,
-            foregroundColor: Colors.white,
-            focusColor: Colors.white,
-            splashColor: Color(0x80FFFFFF),
-            elevation: 0.5,
-            tooltip: '',
-            child: const Icon(Icons.add),
-          ),
+          child: Row(
+            spacing: 20,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              FloatingActionButton(
+                heroTag: "FloatingActionButton1",
+                onPressed: () => {
+                  // value.initDB(),
+                  value.comand()
+                },
+                backgroundColor: Color(0xFF636363),
+                hoverColor: Colors.white,
+                foregroundColor: Colors.white,
+                focusColor: Colors.white,
+                splashColor: Color(0x80FFFFFF),
+                elevation: 0.5,
+                tooltip: '',
+                child: const Icon(Icons.add),
+              ),
+              FloatingActionButton(
+                heroTag: "FloatingActionButton2",
+                onPressed: () => {
+                  // value.initDB(),
+                  value.comand()
+                },
+                backgroundColor: Color(0xFF636363),
+                hoverColor: Colors.white,
+                foregroundColor: Colors.white,
+                focusColor: Colors.white,
+                splashColor: Color(0x80FFFFFF),
+                elevation: 0.5,
+                tooltip: '',
+                child: const Icon(Icons.add),
+              ),
+            ],
+          )
+
         ),
       body: Container(
         child: AppFeed(),

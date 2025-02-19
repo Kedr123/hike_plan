@@ -24,7 +24,7 @@ class DBProvider with ChangeNotifier {
   }
 
   initDB() async {
-    _db = await openDatabase("test.db");
+    _db = await openDatabase("test1.db");
     print(_db?.getVersion().toString());
 
     if(!_db!.isOpen) return;
@@ -48,6 +48,7 @@ class DBProvider with ChangeNotifier {
         "y REAL,"
         "type TEXT,"
         "route_id INTEGER,"
+        "step INTEGER,"
         "FOREIGN KEY(route_id) REFERENCES routes(id) ON DELETE CASCADE"
         ")");
   }

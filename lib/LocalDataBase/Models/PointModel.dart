@@ -6,9 +6,10 @@ class PointModel {
   late double y;
   late String type;
   late int route_id;
+  late int step;
 
   PointModel(int? id, String title, String info, double x, double y,
-      String type, int route_id) {
+      String type, int route_id, int step) {
     this.id = id;
     this.title = title;
     this.info = info;
@@ -16,6 +17,7 @@ class PointModel {
     this.y = y;
     this.type = type;
     this.route_id = route_id;
+    this.step = step;
   }
 
   getString() {
@@ -26,6 +28,7 @@ class PointModel {
         ", 'y': " + this.y.toString() +
         ", 'type': " + this.type.toString() +
         ", 'route_id': " + this.route_id.toString() +
+        ", 'step': " + this.step.toString() +
         "}";
   }
 }

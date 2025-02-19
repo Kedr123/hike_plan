@@ -1,12 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hike_plan/Pages/EditPlan.dart';
+import 'package:hike_plan/Pages/EditPlanInfo.dart';
 
 class NavPanelEditPlan extends StatefulWidget {
-  const NavPanelEditPlan({super.key, required this.active_item, required this.isVisible});
+  const NavPanelEditPlan({super.key, required this.active_item, required this.isVisible, required this.setInstrument, required this.route_id,required this.isMap});
 
   final int active_item;
+  final int? route_id;
   final bool isVisible;
+  final bool isMap;
+  final Function setInstrument;
 
   @override
   State<NavPanelEditPlan> createState() => _NavPanelEditPlanState();
@@ -18,7 +23,7 @@ class _NavPanelEditPlanState extends State<NavPanelEditPlan> {
     return Builder(
         builder: (context) => SizedBox(
                 child: Container(
-                  
+
               padding: EdgeInsets.all(20),
               // decoration: BoxDecoration(
               //   boxShadow: <BoxShadow>[
@@ -43,16 +48,34 @@ class _NavPanelEditPlanState extends State<NavPanelEditPlan> {
                   backgroundColor: Color(0xCB636363),
                   currentIndex: this.widget.active_item,
                   onTap: (item) {
-                    if(widget.isVisible){
-                      if (item == 0) {
-                        Navigator.pushNamed(context, '/Index');
+                    if(!widget.isMap) {
+                      if (item == 0 || item == 1) {
+                        Navigator.push(context, PageRouteBuilder(
+                          pageBuilder: (context, animation,
+                              secondaryAnimation) =>
+                              EditPlan(route_id: widget.route_id as int,navPanelEditPlan_item: item,),));
                       }
-                      ;
-                      if (item == 1) {
-                        Navigator.pushNamed(context, '/HikePlans');
-                      }
-                      ;
                     }
+
+                      if (item == 2) {
+                        Navigator.push(context,PageRouteBuilder(pageBuilder: (context, animation, secondaryAnimation) => EditPlanInfo(route_id: widget.route_id as int),) );
+                        return;
+                      }
+                      if (item == 3) {
+                        Navigator.pushNamed(context, '/HikePlans');
+                        return;
+                      }
+
+
+                      widget.setInstrument(item);
+
+                      // ;
+                      // if (item == 1) {
+                      //
+                      //   // Navigator.pushNamed(context, '/HikePlans');
+                      // }
+                      // ;
+
 
                   },
                   items:!widget.isVisible?<BottomNavigationBarItem>[
@@ -67,7 +90,7 @@ class _NavPanelEditPlanState extends State<NavPanelEditPlan> {
                           width: 25,
                           child: Image(
                               image: AssetImage(
-                                  'lib/Assets/Images/Icons/home_icon.png')),
+                                  'lib/Assets/Images/Icons/point_plus_icon.png')),
                         ),
                         label: "",
                         activeIcon: SizedBox(
@@ -75,8 +98,37 @@ class _NavPanelEditPlanState extends State<NavPanelEditPlan> {
                           width: 30,
                           child: Image(
                               image: AssetImage(
-                                  'lib/Assets/Images/Icons/home_active_icon.png')),
+                                  'lib/Assets/Images/Icons/point_plus_active_icon.png')),
                         )),
+                    BottomNavigationBarItem(
+                        icon: SizedBox(
+                          height: 25,
+                          child: Image(
+                              image: AssetImage(
+                                  'lib/Assets/Images/Icons/point_delete_icon.png')),
+                        ),
+                        label: "",
+                        activeIcon: SizedBox(
+                          height: 30,
+                          child: Image(
+                              image: AssetImage(
+                                  'lib/Assets/Images/Icons/point_delete_active_icon.png')),
+                        )),
+                    BottomNavigationBarItem(
+                        icon: SizedBox(
+                          height: 25,
+                          child: Image(
+                              image: AssetImage(
+                                  'lib/Assets/Images/Icons/map_info_icon.png')),
+                        ),
+                        label: "",
+                        activeIcon: SizedBox(
+                          height: 30,
+                          child: Image(
+                              image: AssetImage(
+                                  'lib/Assets/Images/Icons/map_info_active_icon.png')),
+                        )),
+
                     BottomNavigationBarItem(
                         icon: SizedBox(
                           height: 25,
@@ -90,35 +142,6 @@ class _NavPanelEditPlanState extends State<NavPanelEditPlan> {
                           child: Image(
                               image: AssetImage(
                                   'lib/Assets/Images/Icons/track_active_icon.png')),
-                        )),
-                    BottomNavigationBarItem(
-                        icon: SizedBox(
-                          height: 25,
-                          child: Image(
-                              image: AssetImage(
-                                  'lib/Assets/Images/Icons/map_icon.png')),
-                        ),
-                        label: "",
-                        activeIcon: SizedBox(
-                          height: 30,
-                          child: Image(
-                              image: AssetImage(
-                                  'lib/Assets/Images/Icons/map_active_icon.png')),
-                        )),
-
-                    BottomNavigationBarItem(
-                        icon: SizedBox(
-                          height: 25,
-                          child: Image(
-                              image: AssetImage(
-                                  'lib/Assets/Images/Icons/accaunt_icon.png')),
-                        ),
-                        label: "",
-                        activeIcon: SizedBox(
-                          height: 30,
-                          child: Image(
-                              image: AssetImage(
-                                  'lib/Assets/Images/Icons/accaunt_active_icon.png')),
                         )),
                   ],
                 ),

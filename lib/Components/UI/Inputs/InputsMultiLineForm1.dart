@@ -75,7 +75,7 @@ class _InputsMultiLineForm1State extends State<InputsMultiLineForm1> {
                     color: Colors.white,
                     width: 1,
                   ))),
-              maxLines: 11,
+              maxLines: 10,
               onChanged: (value) => {changeStateValue(value)},
             ),
           ),
