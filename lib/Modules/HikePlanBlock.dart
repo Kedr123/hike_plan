@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hike_plan/LocalDataBase/Models/RoutesModel.dart';
-import 'package:hike_plan/Models/MapPreview.dart';
+import 'package:hike_plan/Modules/MapPreview.dart';
 import 'package:hike_plan/Pages/EditPlan.dart';
+import 'package:hike_plan/Pages/Plun.dart';
 
 class HikePlanBlock extends StatefulWidget {
-  const HikePlanBlock({super.key, required this.routesModel});
+  const HikePlanBlock({super.key, required this.routesModel, required this.setRoutes});
 
   final RoutesModel routesModel;
+  final Function setRoutes;
 
   @override
   State<HikePlanBlock> createState() => _HikePlanBlockState();
@@ -26,7 +28,9 @@ class _HikePlanBlockState extends State<HikePlanBlock> {
   final ScrollController _scrollController = ScrollController();
 
   void pushEditPlan(){
-    Navigator.push(context, PageRouteBuilder(pageBuilder: (_, __, ___) => EditPlan(route_id: widget.routesModel.id)));
+    Navigator.push(context, PageRouteBuilder(pageBuilder: (_, __, ___) => Plun(route_id: widget.routesModel.id))).then((value)=>{
+      widget.setRoutes()
+    });
   }
 
   @override

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hike_plan/Models/AppFeed/AppFeedStart.dart';
+import 'package:hike_plan/Modules/AppFeed/AppFeedStart.dart';
 
 class AppFeed extends StatefulWidget {
   const AppFeed({super.key});

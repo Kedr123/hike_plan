@@ -28,8 +28,8 @@ class RoutesController{
     return new RoutesModel(route.id, route.title.toString(), route.info.toString());
   }
 
-  static delete(Database db, RoutesModel route) async{
-    var res = await db.rawDelete('DELETE FROM routes WHERE id='+route.id.toString());
+  static delete(Database db, int route_id) async{
+    var res = await db.rawDelete('DELETE FROM routes WHERE id='+route_id.toString());
     print(res);
   }
 }

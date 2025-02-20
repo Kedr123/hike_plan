@@ -5,12 +5,10 @@ import 'package:hike_plan/Pages/EditPlan.dart';
 import 'package:hike_plan/Pages/EditPlanInfo.dart';
 
 class NavPanelEditPlan extends StatefulWidget {
-  const NavPanelEditPlan({super.key, required this.active_item, required this.isVisible, required this.setInstrument, required this.route_id,required this.isMap});
+  const NavPanelEditPlan({super.key, required this.active_item, required this.isVisible, required this.setInstrument});
 
   final int active_item;
-  final int? route_id;
   final bool isVisible;
-  final bool isMap;
   final Function setInstrument;
 
   @override
@@ -48,23 +46,23 @@ class _NavPanelEditPlanState extends State<NavPanelEditPlan> {
                   backgroundColor: Color(0xCB636363),
                   currentIndex: this.widget.active_item,
                   onTap: (item) {
-                    if(!widget.isMap) {
-                      if (item == 0 || item == 1) {
-                        Navigator.push(context, PageRouteBuilder(
-                          pageBuilder: (context, animation,
-                              secondaryAnimation) =>
-                              EditPlan(route_id: widget.route_id as int,navPanelEditPlan_item: item,),));
-                      }
-                    }
-
-                      if (item == 2) {
-                        Navigator.push(context,PageRouteBuilder(pageBuilder: (context, animation, secondaryAnimation) => EditPlanInfo(route_id: widget.route_id as int),) );
-                        return;
-                      }
-                      if (item == 3) {
-                        Navigator.pushNamed(context, '/HikePlans');
-                        return;
-                      }
+                    // if(!widget.isMap) {
+                    //   if (item == 0 || item == 1) {
+                    //     Navigator.push(context, PageRouteBuilder(
+                    //       pageBuilder: (context, animation,
+                    //           secondaryAnimation) =>
+                    //           EditPlan(route_id: widget.route_id as int,navPanelEditPlan_item: item,),));
+                    //   }
+                    // }
+                    //
+                    //   if (item == 2) {
+                    //     Navigator.push(context,PageRouteBuilder(pageBuilder: (context, animation, secondaryAnimation) => EditPlanInfo(route_id: widget.route_id as int),) );
+                    //     return;
+                    //   }
+                    //   if (item == 3) {
+                    //     Navigator.pushNamed(context, '/HikePlans');
+                    //     return;
+                    //   }
 
 
                       widget.setInstrument(item);

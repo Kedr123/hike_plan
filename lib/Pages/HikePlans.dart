@@ -5,9 +5,10 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:hike_plan/LocalDataBase/Controllers/RoutesController.dart';
 import 'package:hike_plan/LocalDataBase/Database.dart';
 import 'package:hike_plan/LocalDataBase/Models/RoutesModel.dart';
-import 'package:hike_plan/Models/HikePlanBlock.dart';
-import 'package:hike_plan/Models/NavigationPanel.dart';
+import 'package:hike_plan/Modules/HikePlanBlock.dart';
+import 'package:hike_plan/Modules/NavigationPanel.dart';
 import 'package:hike_plan/Pages/EditPlan.dart';
+import 'package:hike_plan/Pages/Plun.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
@@ -27,6 +28,11 @@ class _HikePlansState extends State<HikePlans> {
     setState(() {
       routes = res;
     });
+    print("setR");
+  }
+
+  void toPlan() async{
+    Navigator.push(context, PageRouteBuilder(pageBuilder: (_, __, ___) => Plun(route_id: null,))).then((value) => setRoutes());
   }
 
 
@@ -48,7 +54,9 @@ class _HikePlansState extends State<HikePlans> {
         floatingActionButton: Padding(
           padding: const EdgeInsets.only(bottom: 25.0),
           child: FloatingActionButton(
-            onPressed: () => {Navigator.push(context, PageRouteBuilder(pageBuilder: (_, __, ___) => EditPlan(route_id: null,)))},
+            onPressed: () => {
+              toPlan()
+            },
             backgroundColor: Color(0xFF636363),
             hoverColor: Colors.white,
             foregroundColor: Colors.white,
@@ -68,7 +76,7 @@ class _HikePlansState extends State<HikePlans> {
 
           physics: ClampingScrollPhysics(),
             itemCount: routes.length,
-            itemBuilder:(context, index) => HikePlanBlock(routesModel: RoutesModel(routes[index].id , routes[index].title.toString(), routes[index].info)),
+            itemBuilder:(context, index) => HikePlanBlock(routesModel: RoutesModel(routes[index].id , routes[index].title.toString(), routes[index].info,),setRoutes: setRoutes,),
         )));
   }
 }

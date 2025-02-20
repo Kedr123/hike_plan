@@ -3,6 +3,7 @@ import 'package:hike_plan/LocalDataBase/Database.dart';
 import 'package:hike_plan/Pages/EditPlan.dart';
 import 'package:hike_plan/Pages/HikePlans.dart';
 import 'package:hike_plan/Pages/Index.dart';
+import 'package:hike_plan/Pages/Plun.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -60,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
         else if (settings.name == '/HikePlans')
           return PageRouteBuilder(pageBuilder: (_, __, ___) => HikePlans());
         else if (settings.name == '/EditPlan')
-          return PageRouteBuilder(pageBuilder: (_, __, ___) => EditPlan());
+          return PageRouteBuilder(pageBuilder: (_, __, ___) => Plun());
 
         return null;
       },

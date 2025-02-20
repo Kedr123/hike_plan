@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hike_plan/LocalDataBase/Database.dart';
-import 'package:hike_plan/Models/AppFeed/AppFeed.dart';
-import 'package:hike_plan/Models/NavigationPanel.dart';
+import 'package:hike_plan/Modules/AppFeed/AppFeed.dart';
+import 'package:hike_plan/Modules/NavigationPanel.dart';
 import 'package:provider/provider.dart';
 
 class Index extends StatefulWidget {

@@ -32,7 +32,7 @@ class _InputsMultiLineForm1ControllerState extends State<InputsMultiLineForm1Con
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300,
+      width: double.maxFinite,
       // alignment: Alignment.topLeft,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +42,7 @@ class _InputsMultiLineForm1ControllerState extends State<InputsMultiLineForm1Con
             style: TextStyle(color: Colors.white, fontSize: 14),
           ),
           SizedBox(
-            height: 185,
+            // height: ,
             child: TextFormField(
               obscureText: widget.obscureText,
               enableSuggestions: widget.enableSuggestions,
@@ -55,7 +55,7 @@ class _InputsMultiLineForm1ControllerState extends State<InputsMultiLineForm1Con
                   decoration: TextDecoration.none
               ),
               cursorColor: Colors.white,
-              maxLines: 100,
+              maxLines: 18,
               decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(

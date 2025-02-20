@@ -10,12 +10,13 @@ import 'package:hike_plan/LocalDataBase/Controllers/RoutesController.dart';
 import 'package:hike_plan/LocalDataBase/Database.dart';
 import 'package:hike_plan/LocalDataBase/Models/PointModel.dart';
 import 'package:hike_plan/LocalDataBase/Models/RoutesModel.dart';
-import 'package:hike_plan/Models/NavPanelEditPlan.dart';
+import 'package:hike_plan/Modules/NavPanelEditPlan.dart';
+import 'package:hike_plan/Pages/Plun.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
 class EditPlan extends StatefulWidget {
-  const EditPlan({super.key, this.route_id, this.navPanelEditPlan_item});
+  const EditPlan({super.key, this.route_id,required this.navPanelEditPlan_item});
 
   final int? route_id;
   final int? navPanelEditPlan_item;
@@ -83,10 +84,10 @@ class _EditPlanState extends State<EditPlan> {
     var res = await RoutesController.create(
         Provider.of<DBProvider>(context, listen: false).db,
         new RoutesModel(null, title, info));
-    Navigator.push(
+    Navigator.pushReplacement(
         context,
         PageRouteBuilder(
-            pageBuilder: (_, __, ___) => EditPlan(route_id: res.id)));
+            pageBuilder: (_, __, ___) => Plun(route_id: res.id)));
   }
 
   final MapController _mapController = MapController();
@@ -123,7 +124,7 @@ class _EditPlanState extends State<EditPlan> {
   }
 
   void deletePoint(int index) async {
-    if (bottomMenuActiveItem != 1) return;
+    if (widget.navPanelEditPlan_item != 1) return;
     var point = FullPoints[index];
     await PointsController.delete(
         Provider.of<DBProvider>(context, listen: false).db, point);
@@ -168,9 +169,6 @@ class _EditPlanState extends State<EditPlan> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => {
-          bottomMenuActiveItem = widget.navPanelEditPlan_item == null
-              ? 0
-              : widget.navPanelEditPlan_item as int,
           getPoints()
         });
   }
@@ -185,8 +183,6 @@ class _EditPlanState extends State<EditPlan> {
     }
   }
 
-  int bottomMenuActiveItem = 0;
-
   @override
   Widget build(BuildContext context) {
     // setState(() {
@@ -200,15 +196,6 @@ class _EditPlanState extends State<EditPlan> {
             resizeToAvoidBottomInset: false,
             extendBody: true,
             backgroundColor: Color(0xFF4F4F4F),
-            bottomNavigationBar: NavPanelEditPlan(
-              isMap: true,
-              active_item: bottomMenuActiveItem,
-              isVisible: widget.route_id == null ? false : true,
-              route_id: widget.route_id,
-              setInstrument: (int item) => setState(() {
-                bottomMenuActiveItem = item;
-              }),
-            ),
             body: Stack(
               children: [
                 FlutterMap(
@@ -221,8 +208,24 @@ class _EditPlanState extends State<EditPlan> {
                     children: [
                       TileLayer(
                         urlTemplate:
-                            'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                            'https://tile-c.openstreetmap.fr/hot/{z}/{x}/{y}.png', // Тепаграфическая
+                            // 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', // Стандартная
+                            // 'https://b.tile.thunderforest.com/transport/{z}/{x}/{y}.png', // транспорта
+                            // 'https://c.tile.thunderforest.com/cycle/{z}/{x}/{y}.png', // Велосипедная
+                        // 'https://a.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png' // CycIOSM
+                        // 'https://tile-a.openstreetmap.fr/hot/{z}/{x}/{y}.png', // Гумунитарная
+
                         userAgentPackageName: 'com.example.flutter_map_example',
+
+                      ),
+                      RichAttributionWidget( // Include a stylish prebuilt attribution widget that meets all requirments
+                        attributions: [
+                          TextSourceAttribution(
+                            'OpenStreetMap contributors',
+                            onTap: () => (Uri.parse('https://openstreetmap.org/copyright')), // (external)
+                          ),
+                          // Also add images...
+                        ],
                       ),
                       if (mapPoints.length > 0)
                         PolylineLayer(hitNotifier: hitNotifier, polylines: [
@@ -263,7 +266,7 @@ class _EditPlanState extends State<EditPlan> {
                           children: [
                             ElevatedButton(
                               onPressed: () =>
-                                  {Navigator.pushNamed(context, "/HikePlans")},
+                                  {Navigator.pop(context)},
                               child: Text("Отмена",
                                   style: TextStyle(color: Color(0xFFC36B6B))),
                               style: ElevatedButton.styleFrom(

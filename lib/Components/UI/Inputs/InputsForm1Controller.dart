@@ -32,7 +32,7 @@ class _InputsForm1ControllerState extends State<InputsForm1Controller> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300,
+      width: double.maxFinite,
       // alignment: Alignment.topLeft,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
